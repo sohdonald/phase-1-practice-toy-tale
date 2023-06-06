@@ -46,6 +46,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
           // add button
           const likeButton = document.createElement("button");
+          // this is the where we make the like button
+         
           likeButton.setAttribute("classs", "like-btn");
 
           //get id
@@ -67,21 +69,65 @@ document.addEventListener("DOMContentLoaded", () => {
   renderToys();
 
   function updateToy(id, value, likeNo) {
+    // how do we know like number is increasing?
+    // id is the index number for the object list
+    console.log(value);
+    // sending info to change
+    // const newValue = value + 1
+    // track back unexpected behavior
+
+    console.log(likeNo);
+
     fetch(`http:localhost:3000/toys/${id}`, {
       method: "PATCH",
+      // POST would make new object list
+      // PUT replaces existing object, need copy of original object to avoid bugs 
+      // change value in object element
+      // increase the number of likes
+      // what's changing the value?
+
 
       headers: {
         "Content-Type": "application/json",
+        // shape of the data
         Accept: "application/json",
       },
 
       body: JSON.stringify({
-        likes: value,
+        // json.stringify changes value
+        //likes: value simply maps the value, doesn't change it
+        likes: value++,
+        // value++ increases like number each click
       }),
     })
       .then((res) => res.json())
+      // .then callback that runs when promise is resolved
+      
       .then((toy) => {
+        // toy is the object that got changed
+        // need to change the value
+
+        // promise has 3 states
+        // pending, fullfilled, rejected
+        
+        // What can I log to answer my question
+        // what I think I know vs what I actually know
+        
+        
+        // need to know promise is working
+        // self diagnosis
+        // this needs to be callback function 
+        // to work more than once
+        
+        //this adds the number of likes
         likeNo.textContent = `${(toy.likes).toString()} Likes`;
+        
+        //verify likes going up
+        
+        
+        //check to see if we have value change is correct
+        
+        //like button only works once
         });
   }
 
