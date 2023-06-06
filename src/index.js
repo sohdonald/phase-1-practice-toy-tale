@@ -57,7 +57,9 @@ document.addEventListener("DOMContentLoaded", () => {
           likeButton.addEventListener("click", (e) => {
             console.log(toyId, e.target, "clicked");
             //likeNo.textContent = `${(toy.likes + 1).toString()} Likes`;
-            updateToy(toyId, toy.likes + 1, likeNo);
+            updateToy(toyId, toy.likes++, likeNo);
+            // toy.likes++ works every time button clicks
+            // toy.likes + 1 only works once
           });
           // likeButton not working
           toyCard.append(likeButton);
