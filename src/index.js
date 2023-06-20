@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
       toyFormContainer.style.display = "none";
     }
   });
+  
+  // makeToy function needed for second .then statement
 
   function makeToy(toy) {
       const collection = document.querySelector("#toy-collection");
@@ -51,11 +53,16 @@ document.addEventListener("DOMContentLoaded", () => {
       const toyId = toy.id;
       likeButton.setAttribute("id", toyId);
       likeButton.textContent = "Like ❤️";
+
+      // this addEventListener is CRITICAL
+
       likeButton.addEventListener("click", (e) => {
+
         console.log(toyId, e.target, "clicked");
         //likeNo.textContent = `${(toy.likes + 1).toString()} Likes`;
         
         // number of likes is being added here
+
         updateToy(toyId, toy.likes++, likeNo);
         // toy.likes++ works every time button clicks
         // toy.likes + 1 only works once
@@ -71,6 +78,14 @@ document.addEventListener("DOMContentLoaded", () => {
         array.forEach(makeToy);
         });
       };
+      // fetch creates promise, ask server for data
+      // when promise fulfilled first .then runs
+      // first .then recieves the response from the server
+      // and converts it into js arrays and objects
+      // second .then recieves the data from from the first .then
+      //  array represents the data
+      // data is accessed in second .then
+      // choose what to do with data
     //    .then(data => console.log(data))
   
 
@@ -147,8 +162,13 @@ document.addEventListener("DOMContentLoaded", () => {
   // addEventListener is the function, (e) => {} is callback function
   newToyForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    // preventDefault prevents white screen of death
     // how do we turn off preventDefault so we can see
     // like number increasing?
+    // querySelector gets html elements
+    // getImage datatype will be html element
+    // "input[name='image']" selects the input with name of 'image'
+    // 
     const getImage = document.querySelector("input[name='image']");
     const getName = document.querySelector("input[name='name']");
     const inputImage = getImage.value;
